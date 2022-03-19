@@ -58,8 +58,8 @@ function searchES() {
 
 let es_data = {
     'last_update': {
-        'version': '48.763',
-        'date': '2020/11/06'
+        'version': '-',
+        'date': '-'
     },
     'es': {
         '0': {
