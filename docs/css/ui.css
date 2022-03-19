@@ -33,6 +33,8 @@ div.mdc-data-table {
 }
 details {
     padding: 2px 0px;
+    overflow-wrap: break-word;
+    word-spacing: normal;
 }
 summary {
     padding: 10px 0px;
@@ -42,6 +44,10 @@ summary {
 }
 summary::marker {
     color: #000
+}
+table {
+    width: 100%;
+    table-layout: fixed;
 }
 th.col1 {
     width: 10%;
