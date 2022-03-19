@@ -86,6 +86,5 @@ $(async function() {
         });
     });
 
-    // TODO:
-    // update state
+    document.getElementById('last_update_version').innerText = es_data.last_update.version;
 });
