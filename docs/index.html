@@ -4,13 +4,14 @@
         <meta charset="utf-8" />
 
         <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
         <link rel="stylesheet" href="./css/ui.css" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
         <script src="./js/filter.js"></script>
 
-        <title>（神魔之塔）敵人技能表</title>
+        <title>神魔之塔 敵人技能表</title>
     </head>
     <body>
         <header>
@@ -51,10 +52,25 @@
                     </ul>
                 </div>
             </div>
-            <button class="mdc-button mdc-button--unelevated" onclick="searchES">
+            <button class="mdc-button mdc-button--unelevated" onclick="searchES()">
                 <span class="mdc-button__ripple"></span>
                 <span class="mdc-button__label">搜尋</span>
             </button>
+            <div class="hfill"></div>
+            <div class="mdc-tooltip-wrapper--rich">
+                <button class="mdc-icon-button material-icons-outlined" data-tooltip-id="info_tooltip" id="info_icon">
+                    <span class="mdc-icon-button__ripple"></span>
+                    info
+                </button>
+                <div class="mdc-tooltip mdc-tooltip--rich" data-mdc-tooltip-persistent="true" role="dialog" id="info_tooltip"><div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
+                    <h2 class="mdc-tooltip__title">神魔之塔 敵人技能表</h2>
+                    <p class="mdc-tooltip__content">
+                        作者：璇（<a class="mdc-tooltip__content-link" href="https://home.gamer.com.tw/merakx" target="_blank">merakx</a>）<br />
+                        資料來源：拆包啦哪次不拆了<br />
+                        網頁使用模組：JQuery、Material Design UI
+                    </p>
+                </div></div>
+            </div>
         </header>
         <main>
             <div class="mdc-data-table mdc-data-table--sticky-header" id="es_table"><div class=mdc-data-table__table-container>
@@ -75,115 +91,15 @@
                     <tbody class="mdc-data-table__content">
                         <tr class="mdc-data-table__row">
                             <td class="mdc-data-table__cell">
-                                2
+                                0
                             </td>
                             <td class="mdc-data-table__cell">
                                 <details>
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                    <summary>沒有技能</summary>
+                                    沒有技能
                                 </details>
                             </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
-                        </tr>
-                        <tr class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">
-                                2
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                <details open="">
-                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
-                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
-                                </details>
-                            </td>
-                            <td class="mdc-data-table__cell">
-                                溢補盾
-                            </td>
+                            <td class="mdc-data-table__cell"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -194,6 +110,8 @@
             let filter_preset = mdc.select.MDCSelect.attachTo(document.getElementById('filter_preset'));
             mdc.dataTable.MDCDataTable.attachTo(document.getElementById('es_table'));
             let es_table = document.getElementById('es_table_content');
+            mdc.iconButton.MDCIconButtonToggle.attachTo(document.getElementById('info_icon'));
+            mdc.tooltip.MDCTooltip.attachTo(document.getElementById('info_tooltip'));
 
             filter_preset.listen('MDCSelect:change', e => {
                 if(e.detail.index > 0) {

@@ -14,6 +14,12 @@ header {
     column-gap: 15px;
     align-items: center;
 }
+header>* {
+    flex: 0 0 auto
+}
+header>div.hfill {
+    flex: 1
+}
 main {
     display: flex;
     align-items: flex-start;
@@ -45,4 +51,7 @@ th.col2, th.col3 {
 }
 div.mdc-data-table__table-container {
     overflow-y: scroll
+}
+#info_icon {
+    cursor: default;
 }
