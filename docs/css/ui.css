@@ -13,6 +13,7 @@ header {
     flex-direction: row;
     column-gap: 15px;
     align-items: center;
+    padding-bottom: 6px;
 }
 header>* {
     flex: 0 0 auto
