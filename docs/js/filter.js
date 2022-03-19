@@ -68,6 +68,11 @@ let es_data = {
             'custom_desc': ''
         }
     }
+
+    document.getElementById('table_container').scrollTo({
+        'top': 0,
+        'behavior': 'smooth'
+    });
 };
 
 $(async function() {

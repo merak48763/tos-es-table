@@ -50,6 +50,9 @@ table {
     width: 100%;
     table-layout: fixed;
 }
+th {
+    font-weight: bold;
+}
 th.col1 {
     width: 10%;
 }
