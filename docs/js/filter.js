@@ -23,7 +23,7 @@ function parse_range(raw_str) {
 }
 
 function clear_table() {
-    while(es_table.rows.length > 1) {
+    while(es_table.rows.length > 0) {
         es_table.deleteRow(-1);
     }
 }

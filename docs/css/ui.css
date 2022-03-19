@@ -34,7 +34,7 @@ div.mdc-data-table {
 details {
     padding: 2px 0px;
     overflow-wrap: break-word;
-    word-spacing: normal;
+    white-space: normal;
 }
 summary {
     padding: 10px 0px;
