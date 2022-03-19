@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" />
+        <link rel="stylesheet" href="./css/ui.css" />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="./js/filter.js"></script>
+
+        <title>（神魔之塔）敵人技能表</title>
+    </head>
+    <body>
+        <header>
+            <label class="mdc-text-field mdc-text-field--filled" id="filter_input">
+                <span class="mdc-text-field__ripple"></span>
+                <span class="mdc-floating-label">依編號搜尋</span>
+                <input class="mdc-text-field__input" type="text" autocomplete="off" pattern="^(?:\d+-\d+|\d+)(?:\s\d+-\d+|\s\d+)*$" />
+                <span class="mdc-line-ripple"></span>
+            </label>
+            <div class="mdc-select mdc-select--filled" id="filter_preset">
+                <div class="mdc-select__anchor" role="button">
+                    <span class="mdc-select__ripple"></span>
+                    <span class="mdc-floating-label">預設篩選器</span>
+                    <span class="mdc-select__selected-text-container">
+                        <span class="mdc-select__selected-text" id="preset_value"></span>
+                    </span>
+                    <span class="mdc-select__dropdown-icon">
+                        <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+                            <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd" points="7 10 12 15 17 10"></polygon>
+                            <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd" points="7 15 12 10 17 15"></polygon>
+                        </svg>
+                    </span>
+                    <span class="mdc-line-ripple"></span>
+                </div>
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+                    <ul class="mdc-list" role="listbox">
+                        <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option">
+                            <span class="mdc-list-item__ripple"></span>
+                        </li>
+                        <li class="mdc-list-item" data-value="1-500" role="option">
+                            <span class="mdc-list-item__ripple"></span>
+                            <span class="mdc-list-item__text">ES1 ~ ES500</span>
+                        </li>
+                        <li class="mdc-list-item" data-value="501-1000" role="option">
+                            <span class="mdc-list-item__ripple"></span>
+                            <span class="mdc-list-item__text">ES501 ~ ES1000</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button class="mdc-button mdc-button--unelevated" onclick="searchES">
+                <span class="mdc-button__ripple"></span>
+                <span class="mdc-button__label">搜尋</span>
+            </button>
+        </header>
+        <main>
+            <div class="mdc-data-table mdc-data-table--sticky-header" id="es_table"><div class=mdc-data-table__table-container>
+                <table class="mdc-data-table__table" id="es_table_content">
+                    <thead>
+                        <tr class="mdc-data-table__header-row">
+                            <th class="mdc-data-table__header-cell col1" role="columnheader" scope="col">
+                                編號
+                            </th>
+                            <th class="mdc-data-table__header-cell col2" role="columnheader" scope="col">
+                                官方敘述
+                            </th>
+                            <th class="mdc-data-table__header-cell col3" role="columnheader" scope="col">
+                                資訊圖敘述
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="mdc-data-table__content">
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details>
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                        <tr class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">
+                                2
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                <details open="">
+                                    <summary><span class="mdc-ripple-surface"></span>【溢血攻擊】</summary>
+                                    回血溢出時，敵人扣除<br />相等於回血溢出值的生命力。<br />除此之外，<br />敵人不會受到<br />溢補攻擊以外的傷害。
+                                </details>
+                            </td>
+                            <td class="mdc-data-table__cell">
+                                溢補盾
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div></div>
+        </main>
+        <script>
+            let filter_input = mdc.textField.MDCTextField.attachTo(document.getElementById('filter_input'));
+            let filter_preset = mdc.select.MDCSelect.attachTo(document.getElementById('filter_preset'));
+            mdc.dataTable.MDCDataTable.attachTo(document.getElementById('es_table'));
+            let es_table = document.getElementById('es_table_content');
+
+            filter_preset.listen('MDCSelect:change', e => {
+                if(e.detail.index > 0) {
+                    filter_input.value = e.detail.value;
+                }
+            });
+            filter_input.input.addEventListener('input', e => {
+                filter_preset.selectedIndex = 0;
+            });
+        </script>
+    </body>
+</html>

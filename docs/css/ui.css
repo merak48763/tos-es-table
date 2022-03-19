@@ -1,0 +1,48 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    box-sizing: border-box;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    align-items: center;
+}
+main {
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+    flex: 1;
+}
+
+div.mdc-data-table {
+    width: 100%;
+    max-height: 100%;
+}
+details {
+    padding: 2px 0px;
+}
+summary {
+    padding: 10px 0px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--mdc-theme-primary)
+}
+summary::marker {
+    color: #000
+}
+th.col1 {
+    width: 10%;
+}
+th.col2, th.col3 {
+    width: 45%;
+}
+div.mdc-data-table__table-container {
+    overflow-y: scroll
+}
