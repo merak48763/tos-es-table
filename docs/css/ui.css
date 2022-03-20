@@ -46,6 +46,9 @@ summary {
 summary::marker {
     color: #000
 }
+.math {
+    font-family: monospace
+}
 table {
     width: 100%;
     table-layout: fixed;
