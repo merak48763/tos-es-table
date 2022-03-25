@@ -46,17 +46,17 @@ summary {
 summary::marker {
     color: var(--mdc-theme-on-surface);
 }
-table {
+table.mdc-data-table__table {
     width: 100%;
     table-layout: fixed;
 }
-th {
+th.mdc-data-table__header-cell {
     font-weight: bold;
 }
-th.col1 {
+th.mdc-data-table__header-cell:first-child {
     width: 10%;
 }
-th.col2, th.col3 {
+th.mdc-data-table__header-cell:nth-child(n+2):nth-child(-n+3) {
     width: 45%;
 }
 div.mdc-data-table__table-container {
@@ -78,4 +78,8 @@ details td:first-child {
 details>ul {
     padding-left: 1em;
     margin: 5px 0px;
+}
+
+label#filter_input, div#filter_preset *, span#last_update_version, td.mdc-data-table__cell:first-child {
+    font-family: Rubik, var(--mdc-typography-font-family), Roboto, sans-serif;
 }
