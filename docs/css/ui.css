@@ -41,13 +41,10 @@ summary {
     padding: 10px 0px;
     cursor: pointer;
     user-select: none;
-    color: var(--mdc-theme-primary)
+    color: var(--mdc-theme-primary);
 }
 summary::marker {
-    color: #000
-}
-.math {
-    font-family: monospace
+    color: var(--mdc-theme-on-surface);
 }
 table {
     width: 100%;
@@ -63,8 +60,22 @@ th.col2, th.col3 {
     width: 45%;
 }
 div.mdc-data-table__table-container {
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 #info_icon {
     cursor: default;
+}
+details>table {
+    border: 1px solid #777;
+    width: auto;
+}
+details td {
+    width: 5em;
+}
+details td:first-child {
+    width: 7em;
+}
+details>ul {
+    padding-left: 1em;
+    margin: 5px 0px;
 }

@@ -28,6 +28,19 @@ function clear_table() {
     }
 }
 
+const annotation_replacers = {
+    'crescendo': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>2</td></tr></table><ul><li>各點之間為線性成長</li></ul></details>`,
+    'crescendo_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>3</td></tr></table><ul><li>各點之間為線性成長</li></ul></details>`,
+    'trojan': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>5</td><td>10</td><td>10</td></tr></table><ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>10</td><td>20</td><td>20</td></tr></table><ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_fort_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>10</td><td>20</td><td>20</td></tr></table><ul><li>各點之間為線性成長</li><li>攻擊、防禦倍率相同</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_multi_attack': arg => `<details><summary>血低追擊</summary><table><tr><td>剩餘血量</td><td>100%</td><td>80%</td><td>60%</td><td>40%</td><td>20%</td></tr><tr><td>攻擊次數</td><td>1</td><td>3</td><td>4</td><td>5</td><td>6</td></tr></table></details>`,
+    'trojan_attack': arg => `<details><summary>越攻越強</summary><table><tr><td>攻擊次數</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td></tr></table><ul><li>第6次攻擊起會連擊，並停止倍率成長</li></ul></details>`,
+    'trojan_hp_attack': arg => `<details><summary>越扣越強</summary>${arg==''?'無資料':(arg.replaceAll(' ', '% → ')+'%')}</details>`,
+    'mild_attack': arg => `<details><summary>輕量攻擊</summary>敵人攻擊力的65%</details>`,
+    'fixed_board': arg => `<details><summary>固定版面</summary>${get_fixed_board(arg)}</details>`
+}
+
 function create_row(id) {
     if(id in es_data.es) {
         let new_row = es_table.insertRow(-1);
@@ -38,8 +51,7 @@ function create_row(id) {
         }
 
         new_row.cells[0].innerText = id.toString();
-        es_details = [es_data.es[id].title, es_data.es[id].desc];
-        new_row.cells[1].innerHTML = "<details><summary>{0}</summary>{1}</details>".replace(/{(\d+)}/gm, (m, n) => es_details[n]);
+        new_row.cells[1].innerHTML = `<details><summary>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
@@ -54,6 +66,14 @@ function searchES() {
     else for(let id in es_data.es) {
         create_row(id);
     }
+
+    const a_delim = /(?<=^\S+)\s/;
+    document.querySelectorAll('span.annotation').forEach(ele => {
+        let a_arg = ele.innerText.split(a_delim);
+        if(a_arg[0] in annotation_replacers) {
+            ele.outerHTML = annotation_replacers[a_arg[0]](a_arg[1] ?? '');
+        }
+    });
 
     document.getElementById('table_container').scrollTo({
         'top': 0,
