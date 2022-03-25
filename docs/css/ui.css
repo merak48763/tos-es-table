@@ -83,3 +83,6 @@ details>ul {
 label#filter_input *, div#filter_preset *, span#last_update_version, td.mdc-data-table__cell:first-child {
     font-family: Rubik, var(--mdc-typography-font-family, Roboto, sans-serif);
 }
+span.mdc-floating-label, span.mdc-list-item {
+    user-select: none;
+}
