@@ -176,7 +176,7 @@
                                 0
                             </td>
                             <td class="mdc-data-table__cell">
-                                <details>
+                                <details class="es_desc">
                                     <summary>沒有技能</summary>
                                     沒有技能
                                 </details>
@@ -188,10 +188,10 @@
             </div></div>
         </main>
         <script>
-            let filter_input = mdc.textField.MDCTextField.attachTo(document.getElementById('filter_input'));
-            let filter_preset = mdc.select.MDCSelect.attachTo(document.getElementById('filter_preset'));
+            const filter_input = mdc.textField.MDCTextField.attachTo(document.getElementById('filter_input'));
+            const filter_preset = mdc.select.MDCSelect.attachTo(document.getElementById('filter_preset'));
             mdc.dataTable.MDCDataTable.attachTo(document.getElementById('es_table'));
-            let es_table = document.getElementById('es_table_content');
+            const es_table = document.getElementById('es_table_content');
             mdc.iconButton.MDCIconButtonToggle.attachTo(document.getElementById('info_icon'));
             mdc.tooltip.MDCTooltip.attachTo(document.getElementById('info_tooltip'));
 
