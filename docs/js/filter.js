@@ -39,7 +39,7 @@ const annotation_replacers = {
     'trojan_hp_attack': arg => `<details><summary>越扣越強</summary>${arg==''?'無資料':(arg.replaceAll(' ', '% → ')+'%')}</details>`,
     'explode_increase_attack': arg => `<details><summary>引爆增攻</summary>每1顆增加0.5倍，最高20顆10倍</details>`,
     'mild_attack': arg => `<details><summary>輕量攻擊</summary>敵人攻擊力的65%</details>`,
-    'ambush': arg => `<details><summary>輕量攻擊</summary>${arg==''?'無資料':'敵人攻擊力的'+arg+'%'}</details>`,
+    'ambush': arg => `<details><summary>突擊</summary>${arg==''?'無資料':'敵人攻擊力的'+arg+'%'}</details>`,
     'fixed_board': arg => `<details><summary>固定版面</summary>${get_fixed_board(arg)}</details>`,
     'fixed_shape': arg => `<details><summary>固定版面</summary>${get_fixed_shape(arg)}</details>`,
     'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`,
