@@ -37,10 +37,13 @@ const annotation_replacers = {
     'trojan_multi_attack': arg => `<details><summary>血低追擊</summary><table><tr><td>剩餘血量</td><td>100%</td><td>80%</td><td>60%</td><td>40%</td><td>20%</td></tr><tr><td>攻擊次數</td><td>+0</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td></tr></table></details>`,
     'trojan_attack': arg => `<details><summary>越攻越強</summary><table><tr><td>攻擊次數</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td></tr></table><ul><li>第6次攻擊起會連擊，並停止倍率成長</li></ul></details>`,
     'trojan_hp_attack': arg => `<details><summary>越扣越強</summary>${arg==''?'無資料':(arg.replaceAll(' ', '% → ')+'%')}</details>`,
+    'explode_increase_attack': arg => `<details><summary>引爆增攻</summary>每1顆增加0.5倍，最高20顆10倍</details>`,
     'mild_attack': arg => `<details><summary>輕量攻擊</summary>敵人攻擊力的65%</details>`,
+    'ambush': arg => `<details><summary>輕量攻擊</summary>${arg==''?'無資料':'敵人攻擊力的'+arg+'%'}</details>`,
     'fixed_board': arg => `<details><summary>固定版面</summary>${get_fixed_board(arg)}</details>`,
     'fixed_shape': arg => `<details><summary>固定版面</summary>${get_fixed_shape(arg)}</details>`,
-    'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`
+    'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`,
+    'crumbling_walls': arg => `<details><summary>減傷抗性</summary>${arg==''?'無資料':(arg.replaceAll(' ', '% → ')+'%')}</details>`
 }
 
 function create_row(id) {

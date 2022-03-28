@@ -59,6 +59,10 @@ th.mdc-data-table__header-cell:first-child {
 th.mdc-data-table__header-cell:nth-child(n+2):nth-child(-n+3) {
     width: 45%;
 }
+td.mdc-data-table__cell:nth-child(3):not(:empty) {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
 div.mdc-data-table__table-container {
     overflow-y: scroll;
 }
