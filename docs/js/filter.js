@@ -44,7 +44,8 @@ const annotation_replacers = {
     'fixed_board': arg => `<details><summary>固定版面</summary>${get_fixed_board(arg)}</details>`,
     'fixed_shape': arg => `<details><summary>固定版面</summary>${get_fixed_shape(arg)}</details>`,
     'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`,
-    'crumbling_walls': arg => `<details><summary>減傷抗性</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', '% → ')+'%')}</details>`
+    'crumbling_walls': arg => `<details><summary>減傷抗性</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', '% → ')+'%')}</details>`,
+    'assigned_combo': arg => `<details><summary>固定連擊</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', ' Combo → ')+' Combo')}</details>`
 }
 
 function create_row(id) {
