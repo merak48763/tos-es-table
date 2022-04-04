@@ -118,5 +118,5 @@ $(async function() {
         });
     });
 
-    document.getElementById('last_update_version').innerText = es_data.last_update.version;
+    document.getElementById('last_update_version').innerText = `${es_data.last_update.version} (${es_data.last_update.date})`;
 });
