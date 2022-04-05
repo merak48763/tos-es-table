@@ -58,7 +58,7 @@ function create_row(id) {
         }
 
         new_row.cells[0].innerText = id.toString();
-        new_row.cells[1].innerHTML = `<details class="es_desc"><summary>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`;
+        new_row.cells[1].innerHTML = `<details><summary>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
