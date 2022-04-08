@@ -46,6 +46,16 @@ summary {
 summary::marker {
     color: var(--mdc-theme-on-surface);
 }
+img.es_icon {
+    height: 20px;
+    vertical-align: bottom;
+}
+img.es_icon:not(:last-child) {
+    margin-right: 2px;
+}
+img.es_icon:last-child {
+    margin-right: 3px;
+}
 table.mdc-data-table__table {
     width: 100%;
     table-layout: fixed;
