@@ -59,7 +59,7 @@ function create_row(id) {
 
         let icons_html = '';
         for(let icon of es_data.es[id].icons ?? []) {
-            icons_html += `<img class="es_icon" src="/tool_data/image/es_icon/${icon.toString()}.png" />`
+            icons_html += `<img class="es_icon" src="/tool_data/image/skill_icon/${icon.toString()}.png" />`
         }
         new_row.cells[0].innerText = id.toString();
         new_row.cells[1].innerHTML = `<details><summary><span>${icons_html}</span>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`;
