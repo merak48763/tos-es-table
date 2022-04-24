@@ -101,8 +101,11 @@ details>ul {
     padding-left: 1em;
     margin: 5px 0px;
 }
-details>ul:first-child {
+details>summary+ul {
     margin-top: 0px;
+}
+details>ul:last-child {
+    margin-bottom: 0px;
 }
 em {
     font-style: normal;
