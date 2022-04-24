@@ -69,9 +69,17 @@ th.mdc-data-table__header-cell:first-child {
 th.mdc-data-table__header-cell:nth-child(n+2):nth-child(-n+3) {
     width: 45%;
 }
+td.mdc-data-table__cell:nth-child(2)>details[open]>summary>span {
+    display: none
+}
+td.mdc-data-table__cell:nth-child(2)>details>span {
+    display: inline-block;
+    margin-bottom: 5px;
+}
 td.mdc-data-table__cell:nth-child(3):not(:empty) {
     padding-top: 4px;
     padding-bottom: 4px;
+    white-space: normal;
 }
 div.mdc-data-table__table-container {
     overflow-y: scroll;
@@ -92,6 +100,9 @@ details td:first-child {
 details>ul {
     padding-left: 1em;
     margin: 5px 0px;
+}
+details>ul:first-child {
+    margin-top: 0px;
 }
 em {
     font-style: normal;
