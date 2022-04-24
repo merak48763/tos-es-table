@@ -87,6 +87,9 @@ div.mdc-data-table__table-container {
 #info_icon {
     cursor: default;
 }
+ul {
+    margin: 0px;
+}
 details>table {
     border: 1px solid #777;
     width: auto;
@@ -99,13 +102,9 @@ details td:first-child {
 }
 details>ul {
     padding-left: 1em;
-    margin: 5px 0px;
 }
-details>summary+ul {
-    margin-top: 0px;
-}
-details>ul:last-child {
-    margin-bottom: 0px;
+details>table+ul {
+    margin-top: 5px;
 }
 em {
     font-style: normal;
