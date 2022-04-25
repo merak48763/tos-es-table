@@ -89,6 +89,7 @@ div.mdc-data-table__table-container {
 }
 ul {
     margin: 0px;
+    padding-left: 1em;
 }
 details>table {
     border: 1px solid #777;
@@ -99,9 +100,6 @@ details td {
 }
 details td:first-child {
     width: 7em;
-}
-details>ul {
-    padding-left: 1em;
 }
 details>table+ul {
     margin-top: 5px;
