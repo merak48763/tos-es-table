@@ -46,7 +46,9 @@ const annotation_replacers = {
     'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`,
     'crumbling_walls': arg => `<details><summary>減傷抗性</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', '% → ')+'%')}</details>`,
     'assigned_combo': arg => `<details><summary>指定連擊</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', ' Combo → ')+' Combo')}</details>`,
-    'assigned_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</details>`
+    'random_combo': arg => `<details><summary>指定連擊</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' Combo ~ ')+' Combo')}</details>`,
+    'assigned_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', ' → '))}</details>`,
+    'random_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</details>`
 }
 
 function create_row(id) {
