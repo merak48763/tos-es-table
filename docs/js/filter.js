@@ -98,7 +98,8 @@ function searchES() {
 let es_data = {
     'last_update': {
         'version': '-',
-        'date': '-'
+        'date': '2022-11-06T09:30:00.000Z',
+        'dv': '-'
     },
     'es': {
         '0': {
@@ -126,5 +127,7 @@ $(async function() {
     });
 
     const update_date = new Date(es_data.last_update.date)  // ISO 8601
-    document.getElementById('last_update_version').innerText = `${es_data.last_update.version} (${update_date.toLocaleDateString()})`;
+    document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
+    document.getElementById('last_update_dv').innerText = `${es_data.last_update.dv}`;
+    document.getElementById('last_update_time').innerText = `${update_date.toLocaleDateString()}`;
 });
