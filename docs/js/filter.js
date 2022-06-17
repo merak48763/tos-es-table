@@ -48,7 +48,40 @@ const annotation_replacers = {
     'assigned_combo': arg => `<details><summary>指定連擊</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', ' Combo → ')+' Combo')}</details>`,
     'random_combo': arg => `<details><summary>指定連擊</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' Combo ~ ')+' Combo')}</details>`,
     'assigned_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', ' → '))}</details>`,
-    'random_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</details>`
+    'random_number': arg => `<details><summary>指定數量</summary>${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</details>`,
+    'attribute_change': arg => {
+        let tokens = arg.split(' ');
+        let texts = ['變更', [], []];
+        let modTarget = 1;
+        for(let token of tokens) {
+            switch(token.toLowerCase()) {
+                case 'loop':
+                    texts[0] = '循環';
+                    texts[1] = [];
+                    modTarget = 1;
+                    break;
+                case 'increase':
+                case 'inc':
+                    texts[0] = '遞增';
+                    texts[1] = [];
+                    modTarget = 1;
+                    break;
+                case 'decrease':
+                case 'dec':
+                    texts[0] = '遞減';
+                    texts[1] = [];
+                    modTarget = 1;
+                    break;
+                case 'init':
+                    modTarget = 2;
+                    texts[2] = [];
+                    break;
+                default:
+                    texts[modTarget].push(token);
+            }
+        }
+        return `<details><summary>屬性${texts[0]}</summary>${texts[1].join(' → ')}${texts[2].length==0 ? '' : ('<br />進場設定為'+texts[2][0])}</details>`;
+    }
 }
 
 function create_row(id) {
@@ -81,7 +114,7 @@ function searchES() {
         create_row(id);
     }
 
-    const a_delim = /(?<=^\S+)\s/;
+    const a_delim = /(?<=^\S+)\s/;  // (?<=^\S+) somehow works
     document.querySelectorAll('span.annotation').forEach(ele => {
         let a_arg = ele.innerText.split(a_delim);
         if(a_arg[0] in annotation_replacers) {
