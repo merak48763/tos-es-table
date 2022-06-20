@@ -104,6 +104,12 @@ details td:first-child {
 details>table+ul {
     margin-top: 5px;
 }
+li>details>summary {
+    padding: 2px 0px 5px 0px;
+}
+li>details[open]>summary {
+    padding-bottom: 10px;
+}
 em {
     font-style: normal;
     color: var(--mdc-theme-secondary);
