@@ -30,14 +30,14 @@
         <header>
             <label class="mdc-text-field mdc-text-field--filled" id="filter_input">
                 <span class="mdc-text-field__ripple"></span>
-                <span class="mdc-floating-label">依編號搜尋</span>
-                <input class="mdc-text-field__input" type="text" autocomplete="off" pattern="^(?:\d+-\d+|\d+)(?:\s\d+-\d+|\s\d+)*$" onkeyup="if(event.keyCode === 13) document.querySelector('#button_search').click()" />
+                <span class="mdc-floating-label">搜尋</span>
+                <input class="mdc-text-field__input" type="text" autocomplete="off" onkeyup="if(event.keyCode === 13) document.querySelector('#button_search').click()" />
                 <span class="mdc-line-ripple"></span>
             </label>
             <div class="mdc-select mdc-select--filled" id="filter_preset">
                 <div class="mdc-select__anchor" role="button">
                     <span class="mdc-select__ripple"></span>
-                    <span class="mdc-floating-label">編號範圍</span>
+                    <span class="mdc-floating-label">以編號搜尋</span>
                     <span class="mdc-select__selected-text-container">
                         <span class="mdc-select__selected-text" id="preset_value"></span>
                     </span>

@@ -1,25 +1,90 @@
-function parse_range(raw_str) {
-    const single_number_pattern = /(?<![0-9\-])\d+(?![0-9\-])/gm;
-    const range_pattern = /\d+-\d+/gm;
+function parse_range(range_str) {
+    const single_number_pattern = /^\d+$/gm;
+    const range_pattern = /^\d+-\d+$/gm
 
-    let result = new Set();
+    let result = []
 
-    let single_numbers = raw_str.match(single_number_pattern);
-    let ranges = raw_str.match(range_pattern);
+    let single_numbers = range_str.match(single_number_pattern);
+    let ranges = range_str.match(range_pattern);
 
     if(single_numbers) for(let n of single_numbers) {
-        result.add(parseInt(n));
+        result.push(parseInt(n));
     }
     if(ranges) for(let r of ranges) {
         let range = r.split('-');
         let lbound = parseInt(range[0]);
         let ubound = parseInt(range[1]);
         for(let i=lbound; i<=ubound; ++i) {
-            result.add(i);
+            result.push(i);
         }
     }
 
-    return Array.from(result).sort((a, b) => a - b);
+    return result;
+}
+
+function match_keyword(str) {
+    if(str == '') return [];
+
+    let result = new Set();
+    const range_pattern = /^\d+(?:-\d+)?$/gm
+
+    for(let id in es_data.es) {
+        if(str.match(range_pattern)) {
+            return parse_range(str);
+        }
+        else if(es_data.es[id].title.replaceAll(' ', '').indexOf(str) > -1) {
+            result.add(parseInt(id));
+        }
+        else if(es_data.es[id].desc.replaceAll('&nbsp;', '').replaceAll('<br />', '').indexOf(str) > -1) {
+            result.add(parseInt(id));
+        }
+        else if('keywords' in es_data.es[id]) {
+            for(let keyword of es_data.es[id].keywords) {
+                if(keyword.indexOf(str) > -1) {
+                    result.add(parseInt(id));
+                    break;
+                }
+            }
+        }
+    }
+
+    return Array.from(result);
+}
+
+function create_sop_terms(raw_str) {
+    let result = raw_str.split(' ');
+    for(let i=0; i<result.length; ++i) {
+        result[i] = result[i].split('&');
+    }
+    return result;
+}
+
+function list_intersect(data) {
+    if(data.length == 0) return [];
+    return data.reduce((a, b) => a.filter(x => b.includes(x)));
+}
+
+function list_union(data) {
+    if(data.length == 0) return [];
+    return data.reduce((a, b) => a.concat(b.filter(x => !a.includes(x))));
+}
+
+function merge_sop_lists(sop_lists) {
+    for(let i=0; i<sop_lists.length; ++i) {
+        sop_lists[i] = list_intersect(sop_lists[i]);
+    }
+    let result = list_union(sop_lists);
+    return result.sort((a, b) => a - b);
+}
+
+function search_data(raw_str) {
+    let sop_terms = create_sop_terms(raw_str);
+    for(let i=0; i<sop_terms.length; ++i) {
+        for(let j=0; j<sop_terms[i].length; ++j) {
+            sop_terms[i][j] = match_keyword(sop_terms[i][j]);
+        }
+    }
+    return merge_sop_lists(sop_terms);
 }
 
 function clear_table() {
@@ -106,13 +171,16 @@ function create_row(id) {
 function searchES() {
     clear_table();
 
-    let queried_es_set = parse_range(filter_input.value);
-    if(queried_es_set.length > 0) for(let id of queried_es_set) {
+    let queried_es_list = search_data(filter_input.value);
+    if(queried_es_list.length > 0) for(let id of queried_es_list) {
         create_row(id);
     }
+    /*
     else for(let id in es_data.es) {
         create_row(id);
     }
+    */
+    else create_row(0);
 
     const a_delim = /(?<=^\S+)\s/;  // (?<=^\S+) somehow works
     document.querySelectorAll('span.annotation').forEach(ele => {
