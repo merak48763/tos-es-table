@@ -231,4 +231,12 @@ $(async function() {
     document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
     document.getElementById('last_update_dv').innerText = `${es_data.last_update.dv}`;
     document.getElementById('last_update_time').innerText = `${update_date.toLocaleDateString()}`;
+
+    const param = new URLSearchParams(location.search);
+    let initTarget = parseInt(param.get('search'));
+    if(initTarget != NaN && initTarget >= 0) {
+        history.replaceState(null, '', location.pathname);
+        filter_input.value = initTarget.toString();
+        searchES();
+    }
 });
