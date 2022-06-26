@@ -51,40 +51,10 @@ function match_keyword(str) {
     return Array.from(result);
 }
 
-function create_sop_terms(raw_str) {
-    let result = raw_str.split(' ');
-    for(let i=0; i<result.length; ++i) {
-        result[i] = result[i].split('&');
-    }
-    return result;
-}
-
-function list_intersect(data) {
-    if(data.length == 0) return [];
-    return data.reduce((a, b) => a.filter(x => b.includes(x)));
-}
-
-function list_union(data) {
-    if(data.length == 0) return [];
-    return data.reduce((a, b) => a.concat(b.filter(x => !a.includes(x))));
-}
-
-function merge_sop_lists(sop_lists) {
-    for(let i=0; i<sop_lists.length; ++i) {
-        sop_lists[i] = list_intersect(sop_lists[i]);
-    }
-    let result = list_union(sop_lists);
-    return result.sort((a, b) => a - b);
-}
-
 function search_data(raw_str) {
-    let sop_terms = create_sop_terms(raw_str);
-    for(let i=0; i<sop_terms.length; ++i) {
-        for(let j=0; j<sop_terms[i].length; ++j) {
-            sop_terms[i][j] = match_keyword(sop_terms[i][j]);
-        }
-    }
-    return merge_sop_lists(sop_terms);
+    let sop_terms = createSOPList(raw_str);
+    transformSOPList(sop_terms, match_keyword);
+    return reduceSOPList(sop_terms).sort((a, b) => a - b);
 }
 
 function clear_table() {
