@@ -91,6 +91,9 @@ ul {
     margin: 0px;
     padding-left: 1em;
 }
+ul>li>ul {
+    list-style-type: "▸ ";
+}
 details>table {
     border: 1px solid #777;
     width: auto;
@@ -109,6 +112,9 @@ li>details>summary {
 }
 li>details[open]>summary {
     padding-bottom: 10px;
+}
+li:not(:last-child)>ul {
+    padding-bottom: 4px;
 }
 em {
     font-style: normal;
