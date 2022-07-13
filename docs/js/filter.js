@@ -116,7 +116,8 @@ const annotation_replacers = {
             }
         }
         return `<details><summary>屬性${texts[0]}</summary>${texts[1].join(' → ')}${texts[2].length==0 ? '' : ('<br />進場設定為'+texts[2][0])}</details>`;
-    }
+    },
+    'quiz': arg => `<details><summary>@quiz</summary>${arg}</details>`
 }
 
 function create_row(id) {
