@@ -38,7 +38,7 @@ function generate_quiz_table(arg) {
     if(tokens.length < 2) {
         return `<details><summary>@quiz</summary>無資料</details>`
     }
-    tokens.forEach((index, element) => {
+    tokens.forEach((element, index) => {
         tokens[index] = element.split(',');
     });
     tokens[1].forEach(element => {
