@@ -130,8 +130,12 @@ table.quiz :where(td, th) {
 table.quiz th:first-child {
     width: 25em;
 }
+table.quiz td:last-child {
+    text-align: center;
+}
 table.quiz img {
     width: 4em;
+    vertical-align: middle;
 }
 
 label#filter_input *, div#filter_preset *, span#last_update_version, span#last_update_dv, span#last_update_time, td.mdc-data-table__cell:first-child {
