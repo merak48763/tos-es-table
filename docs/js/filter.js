@@ -124,14 +124,6 @@ let es_data = {
         }
     }
 };
-let quiz_data = {
-    'last_update': {
-        'version': '-',
-        'dv': '-',
-        'time': 0
-    },
-    'quiz': {}
-};
 
 $(async function() {
     /*
@@ -151,7 +143,6 @@ $(async function() {
     }); */
 
     es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
-    quiz_data = await fetch('/tool_data/data/quiz.json').then(res => res.json());
 
     const update_date = new Date(es_data.last_update.time * 1000);
     document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
