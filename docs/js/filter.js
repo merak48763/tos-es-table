@@ -105,7 +105,10 @@ function searchES() {
     });
 
     document.querySelectorAll('div.mdc-tooltip').forEach(element => {
-        mdc.tooltip.MDCTooltip.attachTo(element);
+        let tooltip = mdc.tooltip.MDCTooltip.attachTo(element);
+        tooltip.attachScrollHandler((event, handler) => {
+            document.querySelector('#table_container').addEventListener(event, handler);
+        });
     });
 
     document.getElementById('table_container').scrollTo({

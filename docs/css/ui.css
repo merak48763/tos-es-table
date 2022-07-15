@@ -137,6 +137,9 @@ table.quiz img {
     width: 4em;
     vertical-align: middle;
 }
+div.mdc-tooltip * {
+    user-select: none;
+}
 
 label#filter_input *, div#filter_preset *, span#last_update_version, span#last_update_dv, span#last_update_time, td.mdc-data-table__cell:first-child {
     font-family: Rubik, var(--mdc-typography-font-family, Roboto, sans-serif);
