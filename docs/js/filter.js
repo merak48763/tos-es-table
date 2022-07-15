@@ -148,7 +148,7 @@ $(async function() {
 
     es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
     await load_quiz_data();
-    await loadMonsterDate();
+    await loadMonsterData();
 
     const update_date = new Date(es_data.last_update.time * 1000);
     document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
