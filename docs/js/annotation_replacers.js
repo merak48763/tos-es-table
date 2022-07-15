@@ -1,16 +1,21 @@
-let quiz_data = await fetch('/tool_data/data/quiz.json').then(res => {
-    if(res.status == 200) {
-        return res.json();
+let quiz_data = null;
+async function load_quiz_data() {
+    if(quiz_data === null) {
+        quiz_data = await fetch('/tool_data/data/quiz.json').then(res => {
+            if(res.status == 200) {
+                return res.json();
+            }
+            return {
+                'last_update': {
+                    'version': '-',
+                    'dv': '-',
+                    'time': 0
+                },
+                'quiz': {}
+            };
+        });
     }
-    return {
-        'last_update': {
-            'version': '-',
-            'dv': '-',
-            'time': 0
-        },
-        'quiz': {}
-    };
-});
+}
 
 function generate_attribute_info(arg) {
     let tokens = arg.split(' ');
