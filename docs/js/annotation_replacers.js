@@ -66,7 +66,6 @@ function generate_quiz_table(arg) {
         let question = qa.question;
         let monster_icon = generateMonsterIcon(tokens[0][qa.answer]);
         let answer = monster_icon.html;
-        if(tokens[0][qa.answer] >= 50000) answer = `<code>#${tokens[0][qa.answer]}</code>`;
         table_rows_html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
     });
     return `<details><summary>@quiz</summary><ul><li>由下列題目隨機抽選一題</li></ul><table class="quiz"><thead><tr><th>問題</th><th>答案</th></tr></thead><tbody>${table_rows_html}</tbody></table></details>`;
