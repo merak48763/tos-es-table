@@ -1,9 +1,16 @@
-let quiz_data = null;
-async function load_quiz_data() {
-    if(quiz_data === null) {
-        quiz_data = await fetch('/tool_data/data/quiz.json').then(res => res.json());
+let quiz_data = await fetch('/tool_data/data/quiz.json').then(res => {
+    if(res.status == 200) {
+        return res.json();
     }
-}
+    return {
+        'last_update': {
+            'version': '-',
+            'dv': '-',
+            'time': 0
+        },
+        'quiz': {}
+    };
+});
 
 function generate_attribute_info(arg) {
     let tokens = arg.split(' ');
@@ -48,7 +55,7 @@ function generate_quiz_table(arg) {
     tokens.forEach((element, index) => {
         tokens[index] = element.split(',');
     });
-    load_quiz_data();
+
     tokens[1].forEach(element => {
         let qa = quiz_data.quiz[element];
         let question = qa.question;
@@ -56,8 +63,8 @@ function generate_quiz_table(arg) {
         let answer = monster_icon.html;
         if(tokens[0][qa.answer] >= 50000) answer = `<code>#${tokens[0][qa.answer]}</code>`;
         table_rows_html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
-        mdc.tooltip.MDCTooltip.attachTo(document.querySelector('div#' + monster_icon.tooltipId));
-    })
+        tooltips.push(monster_icon.tooltipId);
+    });
     return `<details><summary>@quiz</summary><ul><li>由下列題目隨機抽選一題</li></ul><table class="quiz"><thead><tr><th>問題</th><th>答案</th></tr></thead><tbody>${table_rows_html}</tbody></table></details>`;
 }
 
