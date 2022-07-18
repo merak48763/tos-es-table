@@ -130,8 +130,12 @@ table.quiz :where(td, th) {
 table.quiz th:first-child {
     width: 25em;
 }
-table.quiz td:last-child {
+table.quiz th:nth-child(2) {
+    width: 6em;
+}
+table.quiz td:nth-child(3) {
     text-align: center;
+    width: 5em;
 }
 table.quiz img {
     width: 4em;

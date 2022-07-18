@@ -63,12 +63,13 @@ function generate_quiz_table(arg) {
 
     tokens[1].forEach(element => {
         let qa = quiz_data.quiz[element];
-        let question = qa.question;
+        let answer_string = qa.answer_options[qa.answer];
         let monster_icon = generateMonsterIcon(tokens[0][qa.answer]);
-        let answer = monster_icon.html;
-        table_rows_html += `<tr><td>${question}</td><td>${answer}</td></tr>`;
+        let answer_monster = monster_icon.html;
+        if(qa.answer >= tokens[0].length) answer_monster = `<em>ERROR</em>`;
+        table_rows_html += `<tr><td>${qa.question}</td><td>${answer_string}</td><td>${answer_monster}</td></tr>`;
     });
-    return `<details><summary>@quiz</summary><ul><li>由下列題目隨機抽選一題</li></ul><table class="quiz"><thead><tr><th>問題</th><th>答案</th></tr></thead><tbody>${table_rows_html}</tbody></table></details>`;
+    return `<details><summary>@quiz</summary><ul><li>由下列題目隨機抽選一題</li></ul><table class="quiz"><thead><tr><th>問題</th><th>答案</th><th>對應敵人</th></tr></thead><tbody>${table_rows_html}</tbody></table></details>`;
 }
 
 const annotation_replacers = {
