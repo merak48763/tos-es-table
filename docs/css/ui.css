@@ -46,15 +46,21 @@ summary {
 summary::marker {
     color: var(--mdc-theme-on-surface);
 }
-img.es_icon {
+span.si_wrapper {
+    display: inline-block;
+    padding-right: 1px;
+}
+img.es_icon, span.si_frame {
     height: 20px;
     vertical-align: bottom;
-}
-img.es_icon:not(:last-child) {
     margin-right: 2px;
 }
-img.es_icon:last-child {
-    margin-right: 3px;
+span.si_frame {
+    display: inline-block;
+    background: var(--frame-src, black) left center/40px 20px no-repeat;
+    width: 40px;
+    box-sizing: border-box;
+    padding-left: 6px;
 }
 table.mdc-data-table__table {
     width: 100%;
@@ -72,7 +78,7 @@ th.mdc-data-table__header-cell:nth-child(n+2):nth-child(-n+3) {
 td.mdc-data-table__cell:nth-child(2)>details[open]>summary>span {
     display: none
 }
-td.mdc-data-table__cell:nth-child(2)>details>span {
+td.mdc-data-table__cell:nth-child(2)>details>span.si_wrapper {
     display: inline-block;
     margin-bottom: 5px;
 }

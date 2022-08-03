@@ -63,6 +63,17 @@ function clear_table() {
     }
 }
 
+function create_es_icon(icon_id) {
+    if(icon_id < 10000) {
+        return `<img class="es_icon" src="/tool_data/image/skill_icon/${icon_id}.png" />`;
+    }
+    else {
+        let frame_src = `/tool_data/image/skill_icon/f${Math.floor(icon_id/10000)}.png`;
+        icon_id %= 10000;
+        return `<span class="si_frame" style="--frame-src:url(${frame_src});"><img class="es_icon" src="/tool_data/image/skill_icon/${icon_id}.png" /></span>`;
+    }
+}
+
 function create_row(id) {
     if(id in es_data.es) {
         let new_row = es_table.insertRow(-1);
@@ -73,11 +84,11 @@ function create_row(id) {
         }
 
         let icons_html = '';
-        for(let icon of es_data.es[id].icons ?? []) {
-            icons_html += `<img class="es_icon" src="/tool_data/image/skill_icon/${icon.toString()}.png" />`
+        for(let icon_id of es_data.es[id].icons ?? []) {
+            icons_html += create_es_icon(icon_id);
         }
         new_row.cells[0].innerText = id.toString();
-        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details><summary><span>${icons_html}</span>${es_data.es[id].title}</summary>${icons_html=='' ? '' : '<span>'+icons_html+'</span><br />'}${es_data.es[id].desc}</details>`;
+        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${icons_html=='' ? '' : '<span class="si_wrapper">'+icons_html+'</span><br />'}${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
