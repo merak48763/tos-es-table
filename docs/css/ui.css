@@ -57,10 +57,10 @@ img.es_icon, span.si_frame {
 }
 span.si_frame {
     display: inline-block;
-    background: var(--frame-src, black) left center/40px 20px no-repeat;
+    background: var(--frame-src, black) left center/40px no-repeat;
     width: 40px;
     box-sizing: border-box;
-    padding-left: 6px;
+    padding-left: 7px;
 }
 table.mdc-data-table__table {
     width: 100%;
