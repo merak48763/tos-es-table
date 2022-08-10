@@ -136,6 +136,10 @@ em {
     font-style: normal;
     color: var(--mdc-theme-secondary);
 }
+a[target="_blank"]::after {
+    content: 'open_in_new';
+    font-family: "Material Icons Outlined";
+}
 table.quiz {
     border-collapse: collapse;
     border: none;
