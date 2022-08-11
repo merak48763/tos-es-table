@@ -73,7 +73,6 @@ span.si_frame::before {
     background: var(--frame-src, black) left center/cover no-repeat;
     -webkit-mask-image: linear-gradient(to right, #000a 0%, #000a 50%, 60%, #000f 100%);
     mask-image: linear-gradient(to right, #000a 0%, #000a 50%, 60%, #000f 100%);
-    opacity: 0.7;
 }
 table.mdc-data-table__table {
     width: 100%;
