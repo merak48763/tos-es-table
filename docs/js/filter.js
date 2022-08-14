@@ -74,6 +74,29 @@ function create_es_icon(icon_id) {
     }
 }
 
+function create_es_icons_html(icon_list) {
+    let result = '';
+    for(let icon_id of icon_list) {
+        icons_html += create_es_icon(icon_id);
+    }
+    return result;
+}
+
+function switch_icon(target) {
+    let id = target.dataset.skillId;
+    if('alticons' in es_data.es[id]) {
+        let len = es_data.es[id].alticons.length;
+        let next_index = (parseInt(target.dataset.iconIndex)+1) % (len+1);
+        if(next_index == 0) {
+            target.innerHTML = create_es_icons_html(es_data.es[id].icons ?? []);
+        }
+        else {
+            target.innerHTML = create_es_icons_html(es_data.es[id].alticons[next_index-1]);
+        }
+        target.dataset.iconIndex = next_index;
+    }
+}
+
 function create_row(id) {
     if(id in es_data.es) {
         let new_row = es_table.insertRow(-1);
@@ -83,12 +106,12 @@ function create_row(id) {
             new_row.cells[i].classList.add('mdc-data-table__cell');
         }
 
-        let icons_html = '';
-        for(let icon_id of es_data.es[id].icons ?? []) {
-            icons_html += create_es_icon(icon_id);
-        }
+        let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
+        let wrapped_icons = `<span class="si_wrapper">${icons_html}</span>`;
+        let wrapped_icons_clickable = `<span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />`;
+        if(icons_html == '') wrapped_icons_clickable = '';
         new_row.cells[0].innerText = id.toString();
-        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${icons_html=='' ? '' : '<span class="si_wrapper">'+icons_html+'</span><br />'}${es_data.es[id].desc}</details>`;
+        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details><summary>${wrapped_icons}${es_data.es[id].title}</summary>${wrapped_icons_clickable}${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
