@@ -120,7 +120,7 @@ function create_row(id) {
         let wrapped_icons_clickable = `<span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />`;
         if(icons_html == '') wrapped_icons_clickable = '';
         new_row.cells[0].innerText = id.toString();
-        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details onclick="reset_icon(this)"><summary>${wrapped_icons}${es_data.es[id].title}</summary>${wrapped_icons_clickable}${es_data.es[id].desc}</details>`;
+        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details ontoggle="reset_icon(this)"><summary>${wrapped_icons}${es_data.es[id].title}</summary>${wrapped_icons_clickable}${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
