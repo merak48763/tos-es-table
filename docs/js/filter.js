@@ -77,7 +77,7 @@ function create_es_icon(icon_id) {
 function create_es_icons_html(icon_list) {
     let result = '';
     for(let icon_id of icon_list) {
-        icons_html += create_es_icon(icon_id);
+        result += create_es_icon(icon_id);
     }
     return result;
 }
