@@ -97,6 +97,15 @@ function switch_icon(target) {
     }
 }
 
+function reset_icon(details_element) {
+    if(!details_element.open) {
+        let target = details_element.querySelector('details>span.si_wrapper');
+        let id = target.dataset.skillId;
+        target.innerHTML = create_es_icons_html(es_data.es[id].icons ?? []);
+        target.dataset.iconIndex = 0;
+    }
+}
+
 function create_row(id) {
     if(id in es_data.es) {
         let new_row = es_table.insertRow(-1);
@@ -111,7 +120,7 @@ function create_row(id) {
         let wrapped_icons_clickable = `<span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />`;
         if(icons_html == '') wrapped_icons_clickable = '';
         new_row.cells[0].innerText = id.toString();
-        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details><summary>${wrapped_icons}${es_data.es[id].title}</summary>${wrapped_icons_clickable}${es_data.es[id].desc}</details>`;
+        new_row.cells[1].innerHTML = es_data.es[id].desc=='##EMPTY##' ? '' : `<details onclick="reset_icon(this)"><summary>${wrapped_icons}${es_data.es[id].title}</summary>${wrapped_icons_clickable}${es_data.es[id].desc}</details>`;
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
