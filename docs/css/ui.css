@@ -49,6 +49,7 @@ summary::marker {
 span.si_wrapper {
     display: inline-block;
     padding-right: 1px;
+    user-select: none;
 }
 img.es_icon, span.si_frame {
     position: relative;
