@@ -124,7 +124,7 @@ function create_row(id) {
             new_row.cells[1].innerHTML = `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`
         }
         else {
-            new_row_cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />${es_data.es[id].desc}</details>`
+            new_row.cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />${es_data.es[id].desc}</details>`
         }
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
