@@ -120,7 +120,7 @@ function create_row(id) {
         let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
         const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#/g;
         const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
-        let desc_html = es_data.es[id].desc.replace(title0_pat, '<em><b>$1</b></em><br />').replace(title1_pat, '<em>$1</em><br />');
+        let desc_html = es_data.es[id].desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
         }
