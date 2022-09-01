@@ -115,17 +115,20 @@ function create_row(id) {
             new_row.cells[i].classList.add('mdc-data-table__cell');
         }
 
-        let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
         new_row.cells[0].innerText = id.toString();
+
+        let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
+        let desc_html = es_data.es[id].desc.replace(/#title0#(.*?)(?=<br)/g, '<em><b>$1</b></em>').replace(/#title1#(.*?)(?=<br)/g, '<em>$1</em>').replace(/#desc[01]#/g, '');
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
         }
         else if(icons_html == '') {
-            new_row.cells[1].innerHTML = `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${es_data.es[id].desc}</details>`
+            new_row.cells[1].innerHTML = `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${desc_html}</details>`
         }
         else {
-            new_row.cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />${es_data.es[id].desc}</details>`
+            new_row.cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />${desc_html}</details>`
         }
+
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
     }
 }
