@@ -118,7 +118,7 @@ function create_row(id) {
         new_row.cells[0].innerText = id.toString();
 
         let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
-        let desc_html = es_data.es[id].desc.replace(/#title0#(.*?)(?=<br)/g, '<em><b>$1</b></em>').replace(/#title1#(.*?)(?=<br)/g, '<em>$1</em>').replace(/#desc[01]#/g, '');
+        let desc_html = es_data.es[id].desc.replace(/#title0#(.*?)(?=<br\s\/>#desc0#)/g, '<em><b>$1</b></em>').replace(/#title1#(.*?)(?=<br\s\/>#desc1#)/g, '<em>$1</em>').replace(/#desc[01]#/g, '');
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
         }
