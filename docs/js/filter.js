@@ -106,6 +106,16 @@ function reset_icon(details_element) {
     }
 }
 
+function partial_fold(desc) {
+    const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#/g;
+    const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
+    return desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
+
+    //const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#(.*?)(?=#title0#|$)/g;
+    //const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#(.*?)(?=#title[01]#|$)/g;
+    //return desc.replace(title0_pat, '<details><summary>$1</summary>$2</details>').replace(title1_pat, '<details><summary>$1</summary>$2</details>');
+}
+
 function create_row(id) {
     if(id in es_data.es) {
         let new_row = es_table.insertRow(-1);
@@ -118,9 +128,7 @@ function create_row(id) {
         new_row.cells[0].innerText = id.toString();
 
         let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
-        const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#/g;
-        const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
-        let desc_html = es_data.es[id].desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
+        let desc_html = partial_fold(es_data.es[id].desc);
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
         }
