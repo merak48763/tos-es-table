@@ -210,7 +210,7 @@ $(async function() {
         });
     }); */
 
-    es_data = await fetch('https://merak48763.github.io/tool_data/data/es.json').then(res => res.json());
+    es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
     await load_quiz_data();
     await loadMonsterData();
 
