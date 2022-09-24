@@ -107,13 +107,13 @@ function reset_icon(details_element) {
 }
 
 function partial_fold(desc) {
-    const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#/g;
-    const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
-    return desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
+    //const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#/g;
+    //const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
+    //return desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
 
-    //const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#(.*?)(?=#title0#|$)/g;
-    //const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#(.*?)(?=#title[01]#|$)/g;
-    //return desc.replace(title0_pat, '<details><summary>$1</summary>$2</details>').replace(title1_pat, '<details><summary>$1</summary>$2</details>');
+    const title0_pat = /#title0#(.*?)<br\s*\/>#desc0#(.*?)(?=#title0#|$)/g;
+    const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#(.*?)(?=#title[01]#|$)/g;
+    return desc.replace(title0_pat, '<details class="title0"><summary>$1</summary>$2</details>').replace(title1_pat, '<details class="title1"><summary>$1</summary>$2</details>');
 }
 
 function create_row(id) {
@@ -213,6 +213,7 @@ $(async function() {
     es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
     await load_quiz_data();
     await loadMonsterData();
+    if(es_data) document.querySelector("#loading_dialog").remove();
 
     const update_date = new Date(es_data.last_update.time * 1000);
     document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
