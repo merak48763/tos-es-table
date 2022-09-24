@@ -186,25 +186,25 @@ div#loading_dialog {
     justify-content: center;
     align-items: center;
 }
-div#loading_dialog .dialog_scrim {
+div#loading_dialog .dialog-scrim {
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.32);
 }
-div#loading_dialog, div#loading_dialog .dialog_scrim {
+div#loading_dialog, div#loading_dialog .dialog-scrim {
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
 }
-div#loading_dialog .dialog_container {
+div#loading_dialog .dialog-container {
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
-div#loading_dialog .dialog_text {
+div#loading_dialog .dialog-text {
     min-width: 280px;
     max-width: 560px;
     max-height: calc(100% - 32px);
