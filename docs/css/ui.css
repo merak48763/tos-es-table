@@ -33,15 +33,22 @@ div.mdc-data-table {
     max-height: 100%;
 }
 details {
-    padding: 2px 0px;
+    padding: 2px 0;
     overflow-wrap: break-word;
     white-space: normal;
 }
+details.title0, details.title1 {
+    padding-left: 16px;
+}
 summary {
-    padding: 10px 0px;
+    padding: 10px 0;
     cursor: pointer;
     user-select: none;
     color: var(--mdc-theme-primary);
+}
+:where(details.title0, details.title1)>summary {
+    padding: 0;
+    color: var(--mdc-theme-secondary);
 }
 summary::marker {
     color: var(--mdc-theme-on-surface);
