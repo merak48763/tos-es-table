@@ -178,11 +178,11 @@ span.title1 {
     color: var(--mdc-theme-secondary);
 }
 
-div#loading_dialog * {
-    z-index: 7;
+div#loading_dialog, div#loading_dialog * {
     box-sizing: border-box;
 }
 div#loading_dialog {
+    z-index: 7;
     display: flex;
     justify-content: center;
     align-items: center;
