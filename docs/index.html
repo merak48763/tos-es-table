@@ -32,6 +32,12 @@
         <meta name="description" content="查看神魔之塔敵人技能的工具" />
     </head>
     <body>
+        <div id="loading_dialog">
+            <div class="dialog-containter">
+                <div class="dialog-text">資料載入中…</div>
+            </div>
+            <div class="dialog-scrim"></div>
+        </div>
         <header>
             <label class="mdc-text-field mdc-text-field--filled" id="filter_input">
                 <span class="mdc-text-field__ripple"></span>
@@ -219,12 +225,6 @@
                 </table>
             </div></div>
         </main>
-        <div id="loading_dialog">
-            <div class="dialog-containter">
-                <div class="dialog-text">資料載入中…</div>
-            </div>
-            <div class="dialog-scrim"></div>
-        </div>
         <script>
             const filter_input = mdc.textField.MDCTextField.attachTo(document.getElementById('filter_input'));
             const filter_preset = mdc.select.MDCSelect.attachTo(document.getElementById('filter_preset'));

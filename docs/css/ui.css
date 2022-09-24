@@ -46,9 +46,10 @@ summary {
     user-select: none;
     color: var(--mdc-theme-primary);
 }
-:where(details.title0, details.title1)>summary {
+:is(details.title0, details.title1)>summary {
     padding: 0;
     color: var(--mdc-theme-secondary);
+    user-select: text;
 }
 summary::marker {
     color: var(--mdc-theme-on-surface);
