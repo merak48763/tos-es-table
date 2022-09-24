@@ -188,7 +188,7 @@ div#loading_dialog {
     align-items: center;
 }
 div#loading_dialog .dialog-scrim {
-    z-index: 1;
+    z-index: -1;
     background-color: rgba(0, 0, 0, 0.32);
 }
 div#loading_dialog, div#loading_dialog .dialog-scrim {
