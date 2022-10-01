@@ -217,9 +217,9 @@ $(async function() {
     if(es_data) document.querySelector("#loading_dialog").remove();
 
     const update_date = new Date(es_data.last_update.time * 1000);
-    document.getElementById('last_update_version').innerText = `${es_data.last_update.version}`;
-    document.getElementById('last_update_dv').innerText = `${es_data.last_update.dv}`;
-    document.getElementById('last_update_time').innerText = `${update_date.toLocaleDateString()}`;
+    document.getElementById('last_update_version').innerHTML = `${es_data.last_update.version}`;
+    document.getElementById('last_update_dv').innerHTML = `${es_data.last_update.dv}`;
+    document.getElementById('last_update_time').innerHTML = `${update_date.toLocaleDateString()}`;
 
     const param = new URLSearchParams(location.search);
     let initTarget = parseInt(param.get('search'));
