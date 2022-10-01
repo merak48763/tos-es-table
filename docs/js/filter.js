@@ -160,7 +160,7 @@ function searchES() {
 
     const a_delim = /(?<=^\S+)\s/;  // (?<=^\S+) somehow works
     document.querySelectorAll('span.annotation').forEach(ele => {
-        let a_arg = ele.innerText.split(a_delim);
+        let a_arg = ele.innerHTML.split(a_delim);
         if(a_arg[0] in annotation_replacers) {
             ele.outerHTML = annotation_replacers[a_arg[0]](a_arg[1] ?? '');
         }
