@@ -37,7 +37,7 @@ details {
     overflow-wrap: break-word;
     white-space: normal;
 }
-details.title0, details.title1 {
+details.title0, details.title1, td:nth-child(3) details details {
     padding-left: 16px;
 }
 summary {
@@ -46,7 +46,7 @@ summary {
     user-select: none;
     color: var(--mdc-theme-primary);
 }
-:is(details.title0, details.title1)>summary {
+:is(details.title0, details.title1, td:nth-child(3) details details)>summary {
     padding: 0;
     color: var(--mdc-theme-secondary);
     user-select: text;
@@ -61,6 +61,7 @@ span.si_wrapper {
     display: inline-block;
     padding-right: 1px;
     user-select: none;
+    pointer-events: none;
 }
 img.es_icon, span.si_frame {
     position: relative;

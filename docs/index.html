@@ -232,6 +232,7 @@
             const es_table = document.getElementById('es_table_content');
             mdc.iconButton.MDCIconButtonToggle.attachTo(document.getElementById('info_icon'));
             mdc.tooltip.MDCTooltip.attachTo(document.getElementById('info_tooltip'));
+            mdc.ripple.MDCRipple.attachTo(document.getElementById('button_search'));
 
             filter_preset.listen('MDCSelect:change', e => {
                 if(e.detail.index > 0) {
