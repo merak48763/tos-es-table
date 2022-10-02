@@ -37,7 +37,7 @@ details {
     overflow-wrap: break-word;
     white-space: normal;
 }
-details.title0, details.title1, td:nth-child(3) details details {
+details.title0, details.title1 {
     padding-left: 16px;
 }
 summary {
@@ -46,10 +46,13 @@ summary {
     user-select: none;
     color: var(--mdc-theme-primary);
 }
-:is(details.title0, details.title1, td:nth-child(3) details details)>summary {
+:is(details.title0, details.title1)>summary {
     padding: 0;
     color: var(--mdc-theme-secondary);
     user-select: text;
+}
+td:nth-child(3) details.title0>summary {
+    user-select: none;
 }
 summary::marker {
     color: var(--mdc-theme-on-surface);
