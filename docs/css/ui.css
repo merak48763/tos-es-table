@@ -179,6 +179,10 @@ table.quiz img {
     width: 4em;
     vertical-align: middle;
 }
+.annotation-img img {
+    width: 3em;
+    vertical-align: baseline;
+}
 div.mdc-tooltip * {
     user-select: none;
 }

@@ -95,5 +95,6 @@ const annotation_replacers = {
     'assigned_number': arg => `<ul><li>指定數量：${arg=='' ? '無資料' : (arg.replaceAll(' ', ' → '))}</li></ul>`,
     'random_number': arg => `<ul><li>指定數量：${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</li></ul>`,
     'attribute_change': generate_attribute_info,
-    'quiz': generate_quiz_table
+    'quiz': generate_quiz_table,
+    'monster_icon': arg => `<span class="annotation-img">${generateMonsterIcon(arg)}</span>`
 }
