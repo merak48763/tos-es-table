@@ -88,6 +88,7 @@ const annotation_replacers = {
     'fixed_board': arg => `<details><summary>固定版面</summary>${get_fixed_board(arg)}</details>`,
     'fixed_shape': arg => `<details><summary>固定版面</summary>${get_fixed_shape(arg)}</details>`,
     'fixed_position': arg => `<details><summary>固定位置</summary>${get_fixed_position(arg)}</details>`,
+    'fixed_position_nowrap': arg => `${get_fixed_position(arg)}`,
     'crumbling_walls': arg => `<details open=""><summary>減傷抗性</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', '% → ')+'%')}</details>`,
     'assigned_combo': arg => `<ul><li>指定連擊：${arg=='' ? '無資料' : (arg.replaceAll(' ', ' Combo → ')+' Combo')}</li></ul>`,
     'random_combo': arg => `<ul><li>指定連擊：${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' Combo ~ ')+' Combo')}</li></ul>`,
