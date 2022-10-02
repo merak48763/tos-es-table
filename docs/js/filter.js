@@ -168,8 +168,9 @@ function searchES() {
 
     document.querySelectorAll('div.mdc-tooltip').forEach(element => {
         let tooltip = mdc.tooltip.MDCTooltip.attachTo(element);
+        const table_container = document.querySelector('#table_container');
         tooltip.attachScrollHandler((event, handler) => {
-            document.querySelector('#table_container').addEventListener(event, handler);
+            table_container.addEventListener(event, handler);
         });
     });
 
