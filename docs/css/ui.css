@@ -180,8 +180,9 @@ table.quiz img {
     vertical-align: middle;
 }
 .annotation-img img {
-    width: 3em;
-    vertical-align: baseline;
+    width: 2em;
+    padding: 0 .2em;
+    vertical-align: bottom;
 }
 div.mdc-tooltip * {
     user-select: none;
