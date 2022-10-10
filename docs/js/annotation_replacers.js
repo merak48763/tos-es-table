@@ -51,6 +51,14 @@ function generate_attribute_info(arg) {
     return `<details><summary>屬性${texts[0]}</summary>${texts[1].join(' → ')}${texts[2].length==0 ? '' : ('<br />進場設定為'+texts[2][0])}</details>`;
 }
 
+function generate_table(arg) {
+    return "<table><tbody>" + arg.split(" ").map(
+        row => "<tr>" + row.split(",").map(
+            cell => `<td>${cell}</td>`
+        ).join("") + "</tr>"
+    ).join("") + "</tbody></table>";
+}
+
 function generate_quiz_table(arg) {
     let table_rows_html = '';
     let tokens = arg.split(' ');
@@ -73,13 +81,13 @@ function generate_quiz_table(arg) {
 }
 
 const annotation_replacers = {
-    'crescendo': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>2</td></tr></table><ul><li>各點之間為線性成長</li></ul></details>`,
-    'crescendo_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>3</td></tr></table><ul><li>各點之間為線性成長</li></ul></details>`,
-    'trojan': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>5</td><td>10</td><td>10</td></tr></table><ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
-    'trojan_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>10</td><td>20</td><td>20</td></tr></table><ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
-    'trojan_fort_ex': arg => `<details><summary>越戰越強</summary><table><tr><td>剩餘血量</td><td>100%</td><td>50%</td><td>35%</td><td>20%</td><td>0%</td></tr><tr><td>倍率</td><td>1</td><td>3</td><td>10</td><td>20</td><td>20</td></tr></table><ul><li>各點之間為線性成長</li><li>攻擊、防禦倍率相同</li><li>血量30%以下時發動連擊</li></ul></details>`,
-    'trojan_multi_attack': arg => `<details><summary>血低追擊</summary><table><tr><td>剩餘血量</td><td>100%</td><td>80%</td><td>60%</td><td>40%</td><td>20%</td></tr><tr><td>攻擊次數</td><td>+0</td><td>+1</td><td>+2</td><td>+3</td><td>+4</td></tr></table></details>`,
-    'trojan_attack': arg => `<details><summary>越攻越強</summary><table><tr><td>攻擊次數</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><td>倍率</td><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td></tr></table><ul><li>第6次攻擊起會連擊，並停止倍率成長</li></ul></details>`,
+    'crescendo': () => `<details><summary>越戰越強</summary><table>${generate_table("剩餘血量,100%,20%,0% 倍率,1,2,2")}<ul><li>各點之間為線性成長</li></ul></details>`,
+    'crescendo_ex': () => `<details><summary>越戰越強</summary>${generate_table("剩餘血量,100%,20%,0% 倍率,1,3,3")}<ul><li>各點之間為線性成長</li></ul></details>`,
+    'trojan': () => `<details><summary>越戰越強</summary>${generate_table("剩餘血量,100%,50%,35%,20%,0% 倍率,1,2,5,10,10")}<ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_ex': () => `<details><summary>越戰越強</summary>${generate_table("剩餘血量,100%,50%,35%,20%,0% 倍率,1,3,10,20,20")}<ul><li>各點之間為線性成長</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_fort_ex': () => `<details><summary>越戰越強</summary>${generate_table("剩餘血量,100%,50%,35%,20%,0% 倍率,1,3,10,20,20")}<ul><li>各點之間為線性成長</li><li>攻擊、防禦倍率相同</li><li>血量30%以下時發動連擊</li></ul></details>`,
+    'trojan_multi_attack': () => `<details><summary>血低追擊</summary>${generate_table("剩餘血量,100%,80%,60%,40%,20% 攻擊次數,+0,+1,+2,+3,+4")}</details>`,
+    'trojan_attack': () => `<details><summary>越攻越強</summary>${generate_table("攻擊次數,1,2,3,4,5,6 倍率,1,2,4,8,16,32")}</details>`,
     'trojan_hp_attack': arg => `<details open=""><summary>越扣越強</summary>${arg=='' ? '無資料' : (arg.replaceAll(' ', '% → ')+'%')}</details>`,
     'explode_increase_attack': arg => `<ul><li>引爆增攻：每1顆增加0.5倍，最高20顆增加10倍</li></ul>`,
     'explode_reduce_damage': arg => `<ul><li>引爆減傷：每1顆減傷${arg || '5'}%，最高${Math.ceil(100/parseInt(arg || '5'))}顆減傷100%</li></ul>`,
@@ -96,5 +104,6 @@ const annotation_replacers = {
     'random_number': arg => `<ul><li>指定數量：${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</li></ul>`,
     'attribute_change': generate_attribute_info,
     'quiz': generate_quiz_table,
-    'monster_icon': arg => `<span class="annotation-img">${generateMonsterIcon(arg).html}</span>`
+    'monster_icon': arg => `<span class="annotation-img">${generateMonsterIcon(arg).html}</span>`,
+    'table': generate_table
 }
