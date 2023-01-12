@@ -71,6 +71,10 @@ function generate_quiz_table(arg) {
 
     tokens[1].forEach(element => {
         let qa = quiz_data.quiz[element];
+        if(!qa) {
+            table_rows_html += `<tr><td colspan="3">Quiz #${element} 沒有資料</td></tr>`;
+            return;
+        }
         let answer_string = qa.answer_options[qa.answer];
         let monster_icon = generateMonsterIcon(tokens[0][qa.answer]);
         let answer_monster = monster_icon.html;
