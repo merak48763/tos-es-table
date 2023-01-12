@@ -46,6 +46,9 @@ summary {
     user-select: none;
     color: var(--mdc-theme-primary);
 }
+details[open]>summary {
+    user-select: text;
+}
 :is(details.title0, details.title1)>summary {
     padding: 0;
     color: var(--mdc-theme-secondary);
