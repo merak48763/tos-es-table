@@ -177,9 +177,12 @@ table.quiz td:nth-child(3) {
     text-align: center;
     width: 5em;
 }
-table.quiz img {
+table.quiz img:not(.question_image) {
     width: 4em;
     vertical-align: middle;
+}
+table.quiz img.question_image {
+    max-width: 100%;
 }
 .annotation-img img {
     width: 2em;
