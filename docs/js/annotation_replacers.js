@@ -70,7 +70,7 @@ function generate_battle_puzzle(arg) {
     }
     board_html += "</table></details>";
 
-    return board_html.join("");
+    return board_html;
 }
 
 function generate_table(arg) {
