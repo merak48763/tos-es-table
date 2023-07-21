@@ -51,6 +51,28 @@ function generate_attribute_info(arg) {
     return `<details><summary>屬性${texts[0]}</summary>${texts[1].join(' → ')}${texts[2].length==0 ? '' : ('<br />進場設定為'+texts[2][0])}</details>`;
 }
 
+function generate_battle_puzzle(arg) {
+    // battle_puzzle <w> <h> <id>
+    const image_base = "/tool_data/image/puzzle/";
+    const tokens = arg.split(" ");
+    const width = parseInt(tokens[0]);
+    const height = parseInt(tokens[1]);
+    const id = tokens[2];
+
+    let board_html = `<details><summary>戰鬥圖板</summary><table class="battle_puzzle">`;
+    for(let r=0; r<height; ++r) {
+        board_html += "<tr>";
+        for(let c=0; c<width; ++c) {
+            const index = r*width + c;
+            board_html += `<td><img src="${image_base}${id}_${index}.png" /></td>`;
+        }
+        board_html += "</tr>";
+    }
+    board_html += "</table></details>";
+
+    return board_html.join("");
+}
+
 function generate_table(arg) {
     return "<table><tbody>" + arg.split(" ").map(
         row => "<tr>" + row.split(",").map(
@@ -109,6 +131,7 @@ const annotation_replacers = {
     'random_number': arg => `<ul><li>指定數量：${arg=='' ? '無資料' : ('隨機範圍 '+arg.replace(' ', ' ~ '))}</li></ul>`,
     'attribute_change': generate_attribute_info,
     'quiz': generate_quiz_table,
+    'battle_puzzle': generate_battle_puzzle,
     'monster_icon': arg => `<span class="annotation-img">${generateMonsterIcon(arg).html}</span>`,
     'table': generate_table
 }
