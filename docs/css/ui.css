@@ -200,8 +200,9 @@ table.battle_puzzle td {
     line-height: 0;
 }
 table.battle_puzzle img {
-    width: 45px;
-    height: 45px;
+    --puzzle-size: 60px;
+    width: var(--puzzle-size);
+    height: var(--puzzle-size);
 }
 .annotation-img img {
     width: 2em;
