@@ -195,7 +195,7 @@ let es_data = {
     }
 };
 
-window.onload = async function() {
+window.addEventListener("load", async function() {
     es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
     await load_quiz_data();
     await loadMonsterData();
@@ -213,4 +213,4 @@ window.onload = async function() {
         filter_input.value = initTarget.toString();
         searchES();
     }
-}
+});
