@@ -195,23 +195,7 @@ let es_data = {
     }
 };
 
-$(async function() {
-    /*
-    await new Promise((resolve, reject) => {
-        $.ajax({
-            'type': 'GET',
-            'url': '/tool_data/data/es.json',
-            'success': e => {
-                es_data = e;
-                resolve();
-            },
-            'error': e => {
-                console.error(e);
-                reject();
-            }
-        });
-    }); */
-
+window.onload = async function() {
     es_data = await fetch('/tool_data/data/es.json').then(res => res.json());
     await load_quiz_data();
     await loadMonsterData();
@@ -229,4 +213,4 @@ $(async function() {
         filter_input.value = initTarget.toString();
         searchES();
     }
-});
+}
