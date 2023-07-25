@@ -204,6 +204,10 @@ table.battle_puzzle img {
     width: var(--puzzle-size);
     height: var(--puzzle-size);
 }
+table.battle_puzzle :is(tr:first-child>td:first-child, tr:last-child>td:last-child) {
+    /* mspaint bucket chk */
+    background-color: rgba(255, 0, 255, 0.01);
+}
 .annotation-img img {
     width: 2em;
     padding: 0 .2em;
