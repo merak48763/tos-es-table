@@ -79,9 +79,12 @@ img.es_icon, span.si_frame {
 }
 img.es_icon {
     width: 20px;
-    object-fit: cover;
+    object-fit: contain;
 }
 img.es_icon.es_icon--crop {
+    object-fit: cover;
+}
+span.si_frame:has(> img.es_icon.es_icon--crop) > img.es_icon {
     height: 40px;
     margin-top: -10px;
 }
