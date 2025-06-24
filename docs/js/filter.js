@@ -63,7 +63,7 @@ function clear_table() {
     }
 }
 
-function create_es_icon(icon_id) {
+function custom_es_icon(icon_id) {
     if(icon_id < 10000) {
         return `<img class="es_icon" src="/tool_data/image/skill_icon/${icon_id}.png" />`;
     }
@@ -74,24 +74,33 @@ function create_es_icon(icon_id) {
     }
 }
 
-function create_es_icons_html(icon_list) {
+function standard_es_icon(icon_id) {
+    // TODO: special ID post-processing
+    return `<img class="es_icon" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
+}
+
+function create_custom_icons_html(icon_list) {
     let result = '';
     for(let icon_id of icon_list) {
-        result += create_es_icon(icon_id);
+        result += custom_es_icon(icon_id);
     }
     return result;
 }
 
+function create_standard_icons_html(icon_list) {
+    return icon_list.map(standard_es_icon).join("");
+}
+
 function switch_icon(target) {
     let id = target.dataset.skillId;
-    if('alticons' in es_data.es[id]) {
+    if("alticons" in es_data.es[id] && "icons" in es_data.es[id]) {
         let len = es_data.es[id].alticons.length;
         let next_index = (parseInt(target.dataset.iconIndex)+1) % (len+1);
         if(next_index == 0) {
-            target.innerHTML = create_es_icons_html(es_data.es[id].icons ?? []);
+            target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
         }
         else {
-            target.innerHTML = create_es_icons_html(es_data.es[id].alticons[next_index-1]);
+            target.innerHTML = create_custom_icons_html(es_data.es[id].alticons[next_index-1]);
         }
         target.dataset.iconIndex = next_index;
     }
@@ -101,7 +110,7 @@ function reset_icon(details_element) {
     if(!details_element.open) {
         let target = details_element.querySelector('details>span.si_wrapper');
         let id = target.dataset.skillId;
-        target.innerHTML = create_es_icons_html(es_data.es[id].icons ?? []);
+        target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
         target.dataset.iconIndex = 0;
     }
 }
@@ -128,7 +137,17 @@ function create_row(id) {
 
         new_row.cells[0].innerText = id.toString();
 
-        let icons_html = create_es_icons_html(es_data.es[id].icons ?? []);
+        // standard icon as fallback
+        const icons_html = "icons" in es_data.es[id]
+            ? create_custom_icons_html(es_data.es[id].icons)
+            : create_standard_icons_html(es_data.standard_icon[id] ?? []);
+/*
+        // custom icon as fallback
+        const icons_html = id in es_data.standard_icon
+            ? create_standard_icons_html(es_data.standard_icon[id])
+            : create_custom_icons_html(es_data.es[id].icons ?? []);
+*/
+
         let desc_html = partial_fold(es_data.es[id].desc);
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
@@ -192,7 +211,8 @@ let es_data = {
             'desc': '沒有技能',
             'custom_desc': ''
         }
-    }
+    },
+    "standard_icon": {}
 };
 
 window.addEventListener("load", async function() {
