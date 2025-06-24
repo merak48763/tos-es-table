@@ -140,11 +140,11 @@ function create_row(id) {
         // standard icon as fallback
         const icons_html = "icons" in es_data.es[id]
             ? create_custom_icons_html(es_data.es[id].icons)
-            : create_standard_icons_html(es_data.standard_icon[id] ?? []);
+            : create_standard_icons_html(es_data.standard_icons[id] ?? []);
 /*
         // custom icon as fallback
-        const icons_html = id in es_data.standard_icon
-            ? create_standard_icons_html(es_data.standard_icon[id])
+        const icons_html = id in es_data.standard_icons
+            ? create_standard_icons_html(es_data.standard_icons[id])
             : create_custom_icons_html(es_data.es[id].icons ?? []);
 */
 
@@ -212,7 +212,7 @@ let es_data = {
             'custom_desc': ''
         }
     },
-    "standard_icon": {}
+    "standard_icons": {}
 };
 
 window.addEventListener("load", async function() {
