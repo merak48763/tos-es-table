@@ -67,12 +67,22 @@ span.si_wrapper {
     display: inline-block;
     padding-right: 1px;
     user-select: none;
+    height: 20px;
+    vertical-align: bottom;
+    overflow-y: hidden;
 }
 img.es_icon, span.si_frame {
     position: relative;
     height: 20px;
     vertical-align: bottom;
     margin-right: 2px;
+}
+img.es_icon {
+    width: 20px;
+    object-fit: cover;
+}
+img.es_icon.es_icon--crop {
+    height: 40px;
 }
 span.si_frame {
     display: inline-block;

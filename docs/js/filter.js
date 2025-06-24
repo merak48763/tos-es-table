@@ -74,9 +74,19 @@ function custom_es_icon(icon_id) {
     }
 }
 
+function standard_es_icon_post_process(icon_id) {
+    if(icon_id == 1053) {
+        return ["es_icon--crop"];
+    }
+    return [];
+}
+
 function standard_es_icon(icon_id) {
-    // TODO: special ID post-processing
-    return `<img class="es_icon" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
+    const classNames = [
+        "es_icon",
+        ...standard_es_icon_post_process(icon_id),
+    ];
+    return `<img class="${classNames.join(" ")}" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
 }
 
 function create_custom_icons_html(icon_list) {
