@@ -91,6 +91,19 @@ function create_standard_icons_html(icon_list) {
     return icon_list.map(standard_es_icon).join("");
 }
 
+function create_icons_html(es_id) {
+    // standard icon as fallback
+    return "icons" in es_data.es[es_id]
+        ? create_custom_icons_html(es_data.es[es_id].icons)
+        : create_standard_icons_html(es_data.standard_icons[es_id] ?? []);
+/*
+    // custom icon as fallback
+    return id in es_data.standard_icons
+        ? create_standard_icons_html(es_data.standard_icons[id])
+        : create_custom_icons_html(es_data.es[id].icons ?? []);
+*/
+}
+
 function switch_icon(target) {
     let id = target.dataset.skillId;
     if("alticons" in es_data.es[id] && "icons" in es_data.es[id]) {
@@ -110,7 +123,7 @@ function reset_icon(details_element) {
     if(!details_element.open) {
         let target = details_element.querySelector('details>span.si_wrapper');
         let id = target.dataset.skillId;
-        target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
+        target.innerHTML = create_icons_html(id);
         target.dataset.iconIndex = 0;
     }
 }
@@ -137,17 +150,7 @@ function create_row(id) {
 
         new_row.cells[0].innerText = id.toString();
 
-        // standard icon as fallback
-        const icons_html = "icons" in es_data.es[id]
-            ? create_custom_icons_html(es_data.es[id].icons)
-            : create_standard_icons_html(es_data.standard_icons[id] ?? []);
-/*
-        // custom icon as fallback
-        const icons_html = id in es_data.standard_icons
-            ? create_standard_icons_html(es_data.standard_icons[id])
-            : create_custom_icons_html(es_data.es[id].icons ?? []);
-*/
-
+        const icons_html = create_icons_html(id);
         let desc_html = partial_fold(es_data.es[id].desc);
         if(es_data.es[id].desc=='##EMPTY##') {
             new_row.cells[1].innerHTML = '';
