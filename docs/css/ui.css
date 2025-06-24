@@ -83,6 +83,7 @@ img.es_icon {
 }
 img.es_icon.es_icon--crop {
     height: 40px;
+    margin-top: -10px;
 }
 span.si_frame {
     display: inline-block;
