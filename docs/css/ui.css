@@ -84,7 +84,7 @@ img.es_icon {
 img.es_icon.es_icon--crop {
     object-fit: cover;
 }
-span.si_frame:has(> img.es_icon.es_icon--crop) > img.es_icon {
+span.si_wrapper:has(> img.es_icon.es_icon--crop) > img.es_icon {
     height: 40px;
     margin-top: -10px;
 }
