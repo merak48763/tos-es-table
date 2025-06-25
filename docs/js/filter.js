@@ -100,6 +100,10 @@ function standard_es_icon(icon_id) {
         "es_icon",
         ...standard_es_icon_post_process(icon_id),
     ];
+    if(icon_id == 185) {
+        // 9+combo icon fix
+        return custom_es_icon(59);
+    }
     return `<img class="${classNames.join(" ")}" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
 }
 
