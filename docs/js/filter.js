@@ -95,7 +95,7 @@ function standard_es_icon_post_process(icon_id) {
     return [];
 }
 
-function standard_es_icon(icon_id) {
+function standard_es_icon(icon_id, corrupt_flag) {
     const classNames = [
         "es_icon",
         ...standard_es_icon_post_process(icon_id),
@@ -104,26 +104,28 @@ function standard_es_icon(icon_id) {
         // 9+combo icon fix
         return custom_es_icon(59);
     }
-    return `<img class="${classNames.join(" ")}" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
+    const icon_html = `<img class="${classNames.join(" ")}" src="/tool_data/image/standard_icon/ICON${icon_id.toString().padStart(3, "0")}.png" />`;
+    if(corrupt_flag) {
+        return `<span class="si_frame" style="--frame-src:url(/tool_data/image/skill_icon/f1.png);">${icon_html}</span>`;
+    }
+    else {
+        return icon_html;
+    }
 }
 
 function create_custom_icons_html(icon_list) {
-    let result = '';
-    for(let icon_id of icon_list) {
-        result += custom_es_icon(icon_id);
-    }
-    return result;
+    return icon_list.map(custom_es_icon).join("");
 }
 
-function create_standard_icons_html(icon_list) {
-    return icon_list.map(standard_es_icon).join("");
+function create_standard_icons_html(icon_list, corrupt_flags) {
+    return icon_list.map((icon_id, idx) => standard_es_icon(icon_id, corrupt_flags?.[idx])).join("");
 }
 
 function create_icons_html(es_id) {
     // standard icon as fallback
     return "icons" in es_data.es[es_id]
         ? create_custom_icons_html(es_data.es[es_id].icons)
-        : create_standard_icons_html(es_data.standard_icons[es_id] ?? []);
+        : create_standard_icons_html(es_data.standard_icons[es_id] ?? [], es_data.es[es_id].corrupt);
 /*
     // custom icon as fallback
     return id in es_data.standard_icons
