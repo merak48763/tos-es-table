@@ -35,7 +35,7 @@ function match_keyword(str) {
         else if(es_data.es[id].title.replaceAll(' ', '').indexOf(str) > -1) {
             result.add(parseInt(id));
         }
-        else if(es_data.es[id].desc.replaceAll('&nbsp;', '').replaceAll('<br />', '').indexOf(str) > -1) {
+        else if(es_data.es[id].desc.replaceAll(' ', '').replaceAll('\n', '').indexOf(str) > -1) {
             result.add(parseInt(id));
         }
         else if('keywords' in es_data.es[id]) {
@@ -163,9 +163,9 @@ function partial_fold(desc) {
     //const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
     //return desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
 
-    const title0_pat = /#title0#(.*?)<br\s\/>#desc0#(.*?)(?=#title0#|$)/g;
-    const title1_pat = /#title1#(.*?)<br\s\/>#desc1#(.*?)(?=#title[01]#|$)/g;
-    const empty_line_pat = /<\/summary><br\s\/>/g;
+    const title0_pat = /#title0#(.*?)\n#desc0#(.*?)(?=#title0#|$)/g;
+    const title1_pat = /#title1#(.*?)\n#desc1#(.*?)(?=#title[01]#|$)/g;
+    const empty_line_pat = /<\/summary>\n/g;
     return desc.replace(title1_pat, '<details class="title1"><summary>$1</summary>$2</details>').replace(title0_pat, '<details class="title0"><summary>$1</summary>$2</details>').replace(empty_line_pat, '</summary>');
 }
 
@@ -186,10 +186,10 @@ function create_row(id) {
             new_row.cells[1].innerHTML = '';
         }
         else if(icons_html == '') {
-            new_row.cells[1].innerHTML = `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary>${desc_html}</details>`
+            new_row.cells[1].innerHTML = `<details><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><div class="es-desc">${desc_html}</div></details>`
         }
         else {
-            new_row.cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br />${desc_html}</details>`
+            new_row.cells[1].innerHTML = `<details ontoggle="reset_icon(this)"><summary><span class="si_wrapper">${icons_html}</span>${es_data.es[id].title}</summary><span class="si_wrapper" data-skill-id="${id}" data-icon-index="0" onclick="switch_icon(this)">${icons_html}</span><br /><div class="es-desc">${desc_html}</div></details>`
         }
 
         new_row.cells[2].innerHTML = es_data.es[id].custom_desc;
