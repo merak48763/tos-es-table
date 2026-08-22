@@ -163,8 +163,8 @@ function partial_fold(desc) {
     //const title1_pat = /#title1#(.*?)<br\s*\/>#desc1#/g;
     //return desc.replace(title0_pat, '<span class="title0">$1</span><br />').replace(title1_pat, '<span class="title1">$1</span><br />');
 
-    const title0_pat = /#title0#(.*?)\n#desc0#(.*?)(?=#title0#|$)/g;
-    const title1_pat = /#title1#(.*?)\n#desc1#(.*?)(?=#title[01]#|$)/g;
+    const title0_pat = /#title0#((?:.|\n)*?)\n#desc0#((?:.|\n)*?)\n?(?=#title0#|$)/g;
+    const title1_pat = /#title1#((?:.|\n)*?)\n#desc1#((?:.|\n)*?)\n?(?=#title[01]#|$)/g;
     const empty_line_pat = /<\/summary>\n/g;
     return desc.replace(title1_pat, '<details class="title1"><summary>$1</summary>$2</details>').replace(title0_pat, '<details class="title0"><summary>$1</summary>$2</details>').replace(empty_line_pat, '</summary>');
 }
