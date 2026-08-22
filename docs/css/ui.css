@@ -45,6 +45,12 @@ summary {
     cursor: pointer;
     user-select: none;
     color: var(--mdc-theme-primary);
+    white-space: pre-wrap;
+    /* padding-left: 1.2em;
+    text-indent: -1.2em;
+    & > * {
+        text-indent: initial;
+    } */
 }
 details[open]>summary {
     user-select: text;
