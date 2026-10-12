@@ -134,18 +134,56 @@ function create_icons_html(es_id) {
 */
 }
 
+/**
+ * 
+ * @param {HTMLElement} target Icon container element
+ */
 function switch_icon(target) {
-    let id = target.dataset.skillId;
-    if("alticons" in es_data.es[id] && "icons" in es_data.es[id]) {
-        let len = es_data.es[id].alticons.length;
-        let next_index = (parseInt(target.dataset.iconIndex)+1) % (len+1);
-        if(next_index == 0) {
-            target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
+    /**
+     * @readonly
+     * @enum {number}
+     */
+    const AltIconEffectType = {
+        SEQUENTIAL: 0,
+        RANDOM_VARIANT: 1,
+    };
+
+    const id = target.dataset.skillId;
+    if(id !== undefined && "alticons" in es_data.es[id] && "icons" in es_data.es[id]) {
+        /** @type {number} */
+        const len = es_data.es[id].alticons.length;
+        const currentIndex = parseInt(target.dataset.iconIndex) || 0;
+        /** @type {AltIconEffectType} */
+        const effectType = es_data.es[id].alticon_effect_type ?? 0;
+        switch(effectType) {
+            case AltIconEffectType.SEQUENTIAL:
+                // Alt icons
+                if(currentIndex < len) {
+                    target.innerHTML = create_custom_icons_html(es_data.es[id].alticons[currentIndex]);
+                }
+                // Default state
+                else {
+                    target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
+                }
+                // Store next state
+                target.dataset.iconIndex = ((currentIndex + 1) % (len + 1)).toString();
+                break;
+            case AltIconEffectType.RANDOM_VARIANT:
+                // Alt icons
+                if(!currentIndex && len > 0) {
+                    const variant = Math.floor(Math.random() * len);
+                    target.innerHTML = create_custom_icons_html(es_data.es[id].alticons[variant]);
+                }
+                // Default state
+                else {
+                    target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
+                }
+                // Store next state
+                target.dataset.iconIndex = ((currentIndex + 1) % 2).toString();
+                break;
+            default:
+                target.innerHTML = create_custom_icons_html(es_data.es[id].icons ?? []);
         }
-        else {
-            target.innerHTML = create_custom_icons_html(es_data.es[id].alticons[next_index-1]);
-        }
-        target.dataset.iconIndex = next_index;
     }
 }
 
