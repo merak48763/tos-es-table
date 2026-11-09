@@ -8,7 +8,7 @@ async function load_quiz_data() {
             return {
                 'last_update': {
                     'version': '-',
-                    'dv': '-',
+                    'sn': '-',
                     'time': 0
                 },
                 'quiz': {}

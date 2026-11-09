@@ -273,7 +273,7 @@ function searchES() {
 let es_data = {
     'last_update': {
         'version': '-',
-        'dv': '-',
+        'sn': '-',
         'time': 0
     },
     'es': {
@@ -294,7 +294,7 @@ window.addEventListener("load", async function() {
 
     const update_date = new Date(es_data.last_update.time * 1000);
     document.getElementById('last_update_version').innerHTML = `${es_data.last_update.version}`;
-    document.getElementById('last_update_dv').innerHTML = `${es_data.last_update.dv}`;
+    document.getElementById('last_update_sn').innerHTML = `${es_data.last_update.sn}`;
     document.getElementById('last_update_time').innerHTML = `${update_date.toLocaleDateString()}`;
 
     const param = new URLSearchParams(location.search);
